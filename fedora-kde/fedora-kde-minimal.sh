@@ -78,3 +78,7 @@ sudo systemctl enable sddm
 
 # Set GUI mode as default
 sudo systemctl set-default graphical.target
+
+# Set Plymouth theme
+sudo plymouth-set-default-theme bgrt
+sudo dracut -f
