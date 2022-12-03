@@ -58,7 +58,9 @@ curl -s https://api.github.com/repos/TheAssassin/AppImageLauncher/releases/lates
   | cut -d : -f 2,3 \
   | tr -d \" \
   | wget -qi -
-sudo dnf localinstall appimagelauncher*
+if compgen -G "appimagelauncher*.rpm" > /dev/null; then \
+  sudo dnf localinstall appimagelauncher*;
+fi
 cd ..
 rm -R rpm_installer_dir
 # -------------------------------------- Install AppImage Launcher End -------------------------------------
