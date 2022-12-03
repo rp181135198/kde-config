@@ -48,6 +48,24 @@ sudo dnf install \
 
 
 
+# Adding AppImage support
+sudo dnf install fuse
+# ------------------------------------- Install AppImage Launcher Start ------------------------------------
+mkdir rpm_installer_dir
+cd rpm_installer_dir
+curl -s https://api.github.com/repos/TheAssassin/AppImageLauncher/releases/latest \
+  | grep "browser_download_url.*$(uname -m).rpm" \
+  | cut -d : -f 2,3 \
+  | tr -d \" \
+  | wget -qi -
+sudo dnf localinstall appimagelauncher*
+cd ..
+rm -R rpm_installer_dir
+# -------------------------------------- Install AppImage Launcher End -------------------------------------
+
+
+
+
 # Adding RPM Fusion Reop Start
 sudo dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm
 # ------------------------------ Install packages from RPM Fusion Reop Start -------------------------------
