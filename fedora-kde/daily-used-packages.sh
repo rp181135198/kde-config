@@ -21,6 +21,20 @@ sudo dnf install \
 
 
 
+# ------------------------------------------ Fonts Packages Start ------------------------------------------
+sudo dnf install \
+  jetbrains-mono-fonts \
+  fira-code-fonts
+
+# Installing Microsoft's Fonts
+# Reference: https://mscorefonts2.sourceforge.net/
+sudo dnf install curl cabextract xorg-x11-font-utils fontconfig
+sudo rpm -i https://downloads.sourceforge.net/project/mscorefonts2/rpms/msttcore-fonts-installer-2.6-1.noarch.rpm
+# ------------------------------------------- Fonts Packages End -------------------------------------------
+
+
+
+
 # -------------------------------------- KDE Extra Applications Start --------------------------------------
 sudo dnf install \
   spectacle \
@@ -105,7 +119,11 @@ sudo sh -c 'echo -e "[teams]\nname=teams\nbaseurl=https://packages.microsoft.com
 sudo dnf check-update
 sudo dnf install teams
 
-# Installing Nvidia Driver
+# Installing Nvidia Proprietary Driver
+#Reference: https://docs.fedoraproject.org/en-US/quick-docs/how-to-set-nvidia-as-primary-gpu-on-optimus-based-laptops/#_step_8_edit_the_x11_configuration
 sudo dnf config-manager rpmfusion-nonfree-nvidia-driver --set-enabled
-sudo dnf install akmod-nvidia acpi
+sudo dnf install gcc kernel-headers kernel-devel akmod-nvidia acpi xorg-x11-drv-nvidia \
+  xorg-x11-drv-nvidia-libs xorg-x11-drv-nvidia-libs.$(uname -m) xorg-x11-drv-nvidia-libs.i686
+sudo akmods --force
+sudo dracut --force
 # ---------------------------------------- Third Party Packages End ----------------------------------------

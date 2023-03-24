@@ -82,3 +82,6 @@ sudo systemctl set-default graphical.target
 # Set Plymouth theme
 sudo plymouth-set-default-theme bgrt
 sudo dracut -f
+
+# Search for other OS on device and add to Grub
+sudo grub2-mkconfig -o /boot/efi/EFI/fedora/grub.cfg
